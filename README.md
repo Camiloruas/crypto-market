@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+# Crypto Tracker Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Real time cryptocurrency dashboard built with React.
+This project consumes an external API to display live market data including price changes trends and performance of multiple cryptocurrencies.
 
-Currently, two official plugins are available:
+## Preview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Add screenshots here later
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Real time cryptocurrency prices
+Market trends with up and down indicators
+Search for specific coins
+Clean and responsive interface
+Fast updates using API data
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+React.js
+JavaScript ES6+
+CSS or Styled Components
+External cryptocurrency API such as CoinGecko
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## API
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+This project uses a public API to fetch real time cryptocurrency data.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Example
+CoinGecko API
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Project Status
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+In development
+New features will be added soon
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## What I Learned
+
+Working with external APIs
+Managing state in React
+Handling asynchronous data
+Building responsive interfaces
+Structuring a scalable front end project
+
+## Installation
+
+Clone the repository
+
+git clone https://github.com/Camiloruas/crypto-tracker-dashboard.git
+
+Enter the project folder
+
+cd crypto-tracker-dashboard
+
+Install dependencies
+
+npm install
+
+Run the project
+
+npm run dev
+
+## Future Improvements
+
+Charts with historical data
+Favorite coins system
+Dark mode
+Price alerts
+Multi language support
+
+## Author
+
+Camilo Ruas
+
+GitHub
+https://github.com/Camiloruas
+
+LinkedIn
+https://www.linkedin.com/in/camilo-ruas-3a2a6425/
+
+## License
+
+This project is open source and available under the MIT License
