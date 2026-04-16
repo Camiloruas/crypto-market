@@ -46,11 +46,11 @@ Structuring a scalable front end project
 
 Clone the repository
 
-git clone https://github.com/Camiloruas/crypto-tracker-dashboard.git
+git clone git@github.com:Camiloruas/crypto-market.git
 
 Enter the project folder
 
-cd crypto-tracker-dashboard
+cd crypto-market
 
 Install dependencies
 
