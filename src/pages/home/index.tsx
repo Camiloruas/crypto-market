@@ -53,7 +53,7 @@ export function Home() {
               2B
             </td>
             <td
-              className={styles.tdLabel}
+              className={styles.tdProfit}
               data-label='Mudança 24H'
             >
               <span>1.20</span>
