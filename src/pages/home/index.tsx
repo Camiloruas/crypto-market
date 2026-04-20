@@ -1,13 +1,28 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './home.module.css';
 import { BsSearch } from 'react-icons/bs';
+import { useState } from 'react';
+import type { FormEvent } from 'react';
 export function Home() {
+  const [input, setInput] = useState('');
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    console.log('Pesquisando por:', input);
+  }
+
   return (
     <main className={styles.container}>
-      <form action='' className={styles.form}>
+      <form
+        action=''
+        className={styles.form}
+        onSubmit={handleSubmit}
+      >
         <input
           type='text'
           placeholder='Digite o nome da Moeda... Ex: Bitcoin'
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
         />
         <button type='submit'>
           <BsSearch size={30} color='#fff' />
