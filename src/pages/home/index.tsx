@@ -1,18 +1,101 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './home.module.css';
 import { BsSearch } from 'react-icons/bs';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
+import { COINCAP_ASSETS_URL } from '../../config/api';
+
+// Interface que descreve o formato de cada moeda recebida da API.
+// Ela ajuda o TypeScript a saber quais propriedades existem em cada moeda.
+interface CoinProps {
+  id: string;
+  symbol: string;
+  priceUsd: string;
+  vwap24Hr: string;
+  changePercent24Hr: string;
+  rank: string;
+  maxSupply: string;
+  marketCapUsd: string;
+  volumeUsd24Hr: string;
+  explorer: string;
+}
+
+// Interface que descreve o formato geral da resposta da API.
+// A API retorna um objeto com uma propriedade "data", que é uma lista de moedas.
+interface DataProps {
+  data: CoinProps[];
+}
+
 export function Home() {
+  // Estado que guarda o texto digitado no campo de busca.
   const [input, setInput] = useState('');
 
+  // Estado que guarda a lista de moedas que será exibida na tabela.
+  const [coins, setCoins] = useState<CoinProps[]>([]);
+
+  // Hook do React Router usado para navegar para outra página pelo código.
+  const navigate = useNavigate();
+
+  // useEffect executa uma ação quando o componente é carregado na tela.
+  // Como o array de dependências está vazio, ele roda apenas uma vez.
+  useEffect(() => {
+    getData();
+  }, []);
+
+  // Função responsável por buscar as moedas na API da CoinCap.
+  async function getData() {
+    fetch(COINCAP_ASSETS_URL)
+      // Converte a resposta da API para JSON.
+      .then((response) => response.json())
+      .then((data: DataProps) => {
+        // Mostra os dados no console do navegador, útil para estudar/debugar.
+        console.log(data);
+
+        // Salva a lista de moedas no estado "coins".
+        // Quando o estado muda, o React atualiza a tabela na tela.
+        setCoins(data.data);
+      });
+  }
+
+  // Função chamada quando o usuário envia o formulário de busca.
   function handleSubmit(e: FormEvent) {
+    // Impede o comportamento padrão do formulário, que seria recarregar a página.
     e.preventDefault();
-    console.log('Pesquisando por:', input);
+
+    // Se o campo estiver vazio, a função para aqui e não navega.
+    if (input === '') return;
+
+    // Navega para a página de detalhes usando o texto digitado no input.
+    navigate(`/detail/${input}`);
+  }
+
+  // Função chamada ao clicar no botão "Carregar mais...".
+  // Por enquanto ela só mostra um alerta de teste.
+  function handleGetMore() {
+    alert('teste');
+  }
+
+  // Formata um valor numérico em formato de moeda.
+  // Exemplo: "67000" vira algo como "US$ 67.000,00".
+  function formatCurrency(value: string) {
+    return Number(value).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'USD',
+    });
+  }
+
+  // Formata números grandes em formato compacto.
+  // Exemplo: "1000000000" vira "1 bi" dependendo do navegador/idioma.
+  function formatCompact(value: string) {
+    return Number(value).toLocaleString('pt-BR', {
+      notation: 'compact',
+      maximumFractionDigits: 2,
+    });
   }
 
   return (
     <main className={styles.container}>
+      {/* Formulário de busca de moedas */}
       <form
         action=''
         className={styles.form}
@@ -22,13 +105,17 @@ export function Home() {
           type='text'
           placeholder='Digite o nome da Moeda... Ex: Bitcoin'
           value={input}
+          // Atualiza o estado "input" sempre que o usuário digita.
           onChange={(e) => setInput(e.target.value)}
         />
+
+        {/* Botão que envia o formulário e executa a busca */}
         <button type='submit'>
           <BsSearch size={30} color='#fff' />
         </button>
       </form>
 
+      {/* Tabela onde as moedas são exibidas */}
       <table>
         <thead>
           <tr>
@@ -41,41 +128,66 @@ export function Home() {
         </thead>
 
         <tbody id='tbody'>
-          <tr className={styles.tr} data-label='Moeda'>
-            <td className={styles.tdLabel}>
-              <div className={styles.name}>
-                <Link to={'detail/bitcon'}>
-                  <span>Biticon</span> | BTC
-                </Link>
-              </div>
-            </td>
-            <td
-              className={styles.tdLabel}
-              data-label='Valor mercado'
-            >
-              1T
-            </td>
-            <td
-              className={styles.tdLabel}
-              data-label='Preço'
-            >
-              8.000
-            </td>
-            <td
-              className={styles.tdLabel}
-              data-label='Volume'
-            >
-              2B
-            </td>
-            <td
-              className={styles.tdProfit}
-              data-label='Mudança 24H'
-            >
-              <span>1.20</span>
-            </td>
-          </tr>
+          {/* Percorre a lista de moedas e cria uma linha da tabela para cada uma */}
+          {coins.map((coin) => (
+            <tr key={coin.id} className={styles.tr}>
+              <td className={styles.tdLabel} data-label='Moeda'>
+                <div className={styles.name}>
+                  {/* Link para a página de detalhes da moeda */}
+                  <Link to={`/detail/${coin.id}`}>
+                    <span>{coin.id}</span> | {coin.symbol}
+                  </Link>
+                </div>
+              </td>
+
+              {/* Valor de mercado da moeda formatado de forma compacta */}
+              <td
+                className={styles.tdLabel}
+                data-label='Valor mercado'
+              >
+                {formatCompact(coin.marketCapUsd)}
+              </td>
+
+              {/* Preço atual da moeda formatado como dinheiro */}
+              <td
+                className={styles.tdLabel}
+                data-label='Preço'
+              >
+                {formatCurrency(coin.priceUsd)}
+              </td>
+
+              {/* Volume negociado nas últimas 24 horas */}
+              <td
+                className={styles.tdLabel}
+                data-label='Volume'
+              >
+                {formatCompact(coin.volumeUsd24Hr)}
+              </td>
+              <td
+                // Se a mudança for positiva ou zero, usa estilo de lucro.
+                // Se for negativa, usa estilo de prejuízo.
+                className={
+                  Number(coin.changePercent24Hr) >= 0
+                    ? styles.tdProfit
+                    : styles.tdLoss
+                }
+                data-label='Mudança 24H'
+              >
+                {/* Mostra a mudança percentual com 2 casas decimais */}
+                <span>{Number(coin.changePercent24Hr).toFixed(2)}%</span>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
+
+      {/* Botão preparado para carregar mais moedas futuramente */}
+      <button
+        className={styles.buttunMore}
+        onClick={handleGetMore}
+      >
+        Carregar mais...
+      </button>
     </main>
   );
 }
