@@ -129,55 +129,68 @@ export function Home() {
 
         <tbody id='tbody'>
           {/* Percorre a lista de moedas e cria uma linha da tabela para cada uma */}
-          {coins.map((coin) => (
-            <tr key={coin.id} className={styles.tr}>
-              <td className={styles.tdLabel} data-label='Moeda'>
-                <div className={styles.name}>
-                  {/* Link para a página de detalhes da moeda */}
-                  <Link to={`/detail/${coin.id}`}>
-                    <span>{coin.id}</span> | {coin.symbol}
-                  </Link>
-                </div>
-              </td>
+          {coins.length > 0 &&
+            coins.map((coin) => (
+              <tr key={coin.id} className={styles.tr}>
+                <td
+                  className={styles.tdLabel}
+                  data-label='Moeda'
+                >
+                  <div className={styles.name}>
+                    <img className={styles.log}
+                       src={`https://assets.coincap.io/assets/icons/${coin.symbol.toLowerCase()}@2x.png`}
+                      alt=''
+                    />
+                    {/* Link para a página de detalhes da moeda */}
+                    <Link to={`/detail/${coin.id}`}>
+                      <span>{coin.id}</span> | {coin.symbol}
+                    </Link>
+                  </div>
+                </td>
 
-              {/* Valor de mercado da moeda formatado de forma compacta */}
-              <td
-                className={styles.tdLabel}
-                data-label='Valor mercado'
-              >
-                {formatCompact(coin.marketCapUsd)}
-              </td>
+                {/* Valor de mercado da moeda formatado de forma compacta */}
+                <td
+                  className={styles.tdLabel}
+                  data-label='Valor mercado'
+                >
+                  {formatCompact(coin.marketCapUsd)}
+                </td>
 
-              {/* Preço atual da moeda formatado como dinheiro */}
-              <td
-                className={styles.tdLabel}
-                data-label='Preço'
-              >
-                {formatCurrency(coin.priceUsd)}
-              </td>
+                {/* Preço atual da moeda formatado como dinheiro */}
+                <td
+                  className={styles.tdLabel}
+                  data-label='Preço'
+                >
+                  {formatCurrency(coin.priceUsd)}
+                </td>
 
-              {/* Volume negociado nas últimas 24 horas */}
-              <td
-                className={styles.tdLabel}
-                data-label='Volume'
-              >
-                {formatCompact(coin.volumeUsd24Hr)}
-              </td>
-              <td
-                // Se a mudança for positiva ou zero, usa estilo de lucro.
-                // Se for negativa, usa estilo de prejuízo.
-                className={
-                  Number(coin.changePercent24Hr) >= 0
-                    ? styles.tdProfit
-                    : styles.tdLoss
-                }
-                data-label='Mudança 24H'
-              >
-                {/* Mostra a mudança percentual com 2 casas decimais */}
-                <span>{Number(coin.changePercent24Hr).toFixed(2)}%</span>
-              </td>
-            </tr>
-          ))}
+                {/* Volume negociado nas últimas 24 horas */}
+                <td
+                  className={styles.tdLabel}
+                  data-label='Volume'
+                >
+                  {formatCompact(coin.volumeUsd24Hr)}
+                </td>
+                <td
+                  // Se a mudança for positiva ou zero, usa estilo de lucro.
+                  // Se for negativa, usa estilo de prejuízo.
+                  className={
+                    Number(coin.changePercent24Hr) >= 0
+                      ? styles.tdProfit
+                      : styles.tdLoss
+                  }
+                  data-label='Mudança 24H'
+                >
+                  {/* Mostra a mudança percentual com 2 casas decimais */}
+                  <span>
+                    {Number(coin.changePercent24Hr).toFixed(
+                      2,
+                    )}
+                    %
+                  </span>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
 
