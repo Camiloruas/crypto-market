@@ -42,7 +42,7 @@ export function Detail() {
 
   return (
     <div>
-      <h1>Página Detalhada de Moeda {cripto}</h1>
+      <h1>Página Detalhada de Moedas {cripto}</h1>
     </div>
   );
 }
