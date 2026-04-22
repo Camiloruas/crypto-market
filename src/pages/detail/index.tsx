@@ -24,16 +24,17 @@ export function Detail() {
           navigate('/');
           return;
         }
-
         const response = await fetch(
           getCoincapAssetDetailsUrl(cripto),
         );
         const data: DataProps = await response.json();
-
-        console.log(data);
+        if ('error' in data) {
+          navigate('/');
+        }
       } catch (err) {
         console.log(err);
         navigate('/');
+        return;
       }
     }
 
