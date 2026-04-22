@@ -3,7 +3,7 @@ import styles from './home.module.css';
 import { BsSearch } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
-import { COINCAP_ASSETS_URL } from '../../config/api';
+import { getCoincapAssetsUrl } from '../../config/api';
 
 // Interface que descreve o formato de cada moeda recebida da API.
 // Ela ajuda o TypeScript a saber quais propriedades existem em cada moeda.
@@ -33,18 +33,14 @@ export function Home() {
   // Estado que guarda a lista de moedas que será exibida na tabela.
   const [coins, setCoins] = useState<CoinProps[]>([]);
 
+  const [offset, setOffset] = useState(0);
+
   // Hook do React Router usado para navegar para outra página pelo código.
   const navigate = useNavigate();
 
-  // useEffect executa uma ação quando o componente é carregado na tela.
-  // Como o array de dependências está vazio, ele roda apenas uma vez.
-  useEffect(() => {
-    getData();
-  }, []);
-
   // Função responsável por buscar as moedas na API da CoinCap.
-  async function getData() {
-    fetch(COINCAP_ASSETS_URL)
+  async function getData(currentOffset = 0) {
+    fetch(getCoincapAssetsUrl(currentOffset))
       // Converte a resposta da API para JSON.
       .then((response) => response.json())
       .then((data: DataProps) => {
@@ -53,9 +49,19 @@ export function Home() {
 
         // Salva a lista de moedas no estado "coins".
         // Quando o estado muda, o React atualiza a tabela na tela.
-        setCoins(data.data);
+        setCoins((prevCoins) =>
+          currentOffset === 0
+            ? data.data
+            : [...prevCoins, ...data.data],
+        );
       });
   }
+
+  // useEffect executa uma ação quando o componente é carregado na tela.
+  // Como o array de dependências está vazio, ele roda apenas uma vez.
+  useEffect(() => {
+    getData();
+  }, []);
 
   // Função chamada quando o usuário envia o formulário de busca.
   function handleSubmit(e: FormEvent) {
@@ -70,9 +76,12 @@ export function Home() {
   }
 
   // Função chamada ao clicar no botão "Carregar mais...".
-  // Por enquanto ela só mostra um alerta de teste.
+  // Busca a próxima página de moedas usando o offset atual.
   function handleGetMore() {
-    alert('teste');
+    const nextOffset = offset + 10;
+
+    setOffset(nextOffset);
+    getData(nextOffset);
   }
 
   // Formata um valor numérico em formato de moeda.
@@ -137,8 +146,9 @@ export function Home() {
                   data-label='Moeda'
                 >
                   <div className={styles.name}>
-                    <img className={styles.log}
-                       src={`https://assets.coincap.io/assets/icons/${coin.symbol.toLowerCase()}@2x.png`}
+                    <img
+                      className={styles.log}
+                      src={`https://assets.coincap.io/assets/icons/${coin.symbol.toLowerCase()}@2x.png`}
                       alt=''
                     />
                     {/* Link para a página de detalhes da moeda */}
