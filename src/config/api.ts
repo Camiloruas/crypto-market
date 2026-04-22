@@ -5,7 +5,7 @@ if (!COINCAP_API_KEY) {
   throw new Error('Configure VITE_COINCAP_API_KEY no arquivo .env');
 }
 
-export function getCoincapAssetsUrl(offset = 0) {
+export function getCoincapAssetListUrl(offset = 0) {
   return `${COINCAP_BASE_URL}/assets?${new URLSearchParams({
     limit: '10',
     offset: String(offset),
@@ -13,7 +13,7 @@ export function getCoincapAssetsUrl(offset = 0) {
   })}`;
 }
 
-export function getCoincapAssetUrl(assetId: string) {
+export function getCoincapAssetDetailsUrl(assetId: string) {
   return `${COINCAP_BASE_URL}/assets/${assetId}?${new URLSearchParams({
     apiKey: COINCAP_API_KEY,
   })}`;

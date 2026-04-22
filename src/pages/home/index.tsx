@@ -3,11 +3,11 @@ import styles from './home.module.css';
 import { BsSearch } from 'react-icons/bs';
 import { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
-import { getCoincapAssetsUrl } from '../../config/api';
+import { getCoincapAssetListUrl } from '../../config/api';
 
 // Interface que descreve o formato de cada moeda recebida da API.
 // Ela ajuda o TypeScript a saber quais propriedades existem em cada moeda.
-interface CoinProps {
+export interface CoinProps {
   id: string;
   symbol: string;
   priceUsd: string;
@@ -40,7 +40,7 @@ export function Home() {
 
   // Função responsável por buscar as moedas na API da CoinCap.
   async function getData(currentOffset = 0) {
-    fetch(getCoincapAssetsUrl(currentOffset))
+    fetch(getCoincapAssetListUrl(currentOffset))
       // Converte a resposta da API para JSON.
       .then((response) => response.json())
       .then((data: DataProps) => {
