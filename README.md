@@ -6,6 +6,10 @@ Crypto Market is a cryptocurrency dashboard built with React, TypeScript and Vit
 
 The goal of this project is to demonstrate API consumption, front-end architecture, routing, componentization, static typing, styling with CSS Modules and automated testing practices in a modern React application.
 
+### Live Demo
+
+Access the deployed project: https://crypto-market-psi-one.vercel.app/
+
 ### Overview
 
 Crypto Market allows users to track cryptocurrencies through a dynamic table focused on quick market reading. The application displays current price, market cap, 24-hour volume and percentage change, with visual indicators for positive and negative variations.
@@ -302,6 +306,10 @@ This project was developed for study and portfolio purposes.
 Crypto Market é um dashboard de criptomoedas desenvolvido com React, TypeScript e Vite. A aplicação consome a API da CoinCap para exibir dados reais de mercado, com listagem de ativos, busca por moeda, paginação incremental, páginas dinâmicas de detalhes e interface responsiva.
 
 O objetivo deste projeto é demonstrar consumo de APIs, arquitetura front-end, rotas, componentização, tipagem estática, estilização com CSS Modules e práticas de testes automatizados em uma aplicação React moderna.
+
+### Projeto Online
+
+Acesse o projeto em produção: https://crypto-market-psi-one.vercel.app/
 
 ### Visão Geral
 
