@@ -28,6 +28,7 @@ describe('Home', () => {
 
   it('renderiza uma moeda recebida da API', async () => {
     vi.spyOn(globalThis, 'fetch').mockResolvedValue({
+      ok: true,
       json: async () => ({ data: [coinMock] }),
     } as Response);
 

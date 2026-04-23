@@ -81,33 +81,40 @@ export function Detail() {
       <h1 className={styles.center}>{coin?.name}</h1>
       <h1 className={styles.center}>{coin?.symbol}</h1>
       <section className={styles.content}>
-        <img
-          className={styles.logo}
-          src={`https://assets.coincap.io/assets/icons/${coin.symbol.toLowerCase()}@2x.png`}
-          alt="Logo da Moeda"
-        />
-        <h1>
-          {coin?.name} | {coin?.symbol}
-        </h1>
-        <p>
-          <strong> Preço:</strong> {coin?.formattedPrice}
-        </p>
-        <a>
-          <strong> Mercado:</strong> {coin?.formattedMarket}
-        </a>
-        <a>
-          <strong> Volume:</strong> {coin?.formattedVolume}
-        </a>
-        <a>
-          <strong> Mudança 24h: </strong>
-          <span
-            className={
-              Number(coin?.changePercent24Hr) > 0 ? styles.profit : styles.loss
-            }
-          >
-            {Number(coin?.changePercent24Hr).toFixed(3)}
-          </span>
-        </a>
+        <div className={styles.cardHeader}>
+          <img
+            className={styles.logo}
+            src={`https://assets.coincap.io/assets/icons/${coin.symbol.toLowerCase()}@2x.png`}
+            alt="Logo da Moeda"
+          />
+          <h1>
+            {coin?.name} | {coin?.symbol}
+          </h1>
+        </div>
+
+        <div className={styles.details}>
+          <p>
+            <strong>Preço:</strong> {coin?.formattedPrice}
+          </p>
+          <p>
+            <strong>Mercado:</strong> {coin?.formattedMarket}
+          </p>
+          <p>
+            <strong>Volume:</strong> {coin?.formattedVolume}
+          </p>
+          <p>
+            <strong>Mudança 24h:</strong>{" "}
+            <span
+              className={
+                Number(coin?.changePercent24Hr) > 0
+                  ? styles.profit
+                  : styles.loss
+              }
+            >
+              {Number(coin?.changePercent24Hr).toFixed(3)}
+            </span>
+          </p>
+        </div>
       </section>
 
       <div className={styles.backButtonArea}>

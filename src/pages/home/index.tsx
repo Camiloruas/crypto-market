@@ -45,7 +45,6 @@ export function Home() {
 
   // Função responsável por buscar as moedas na API da CoinCap.
   async function getData(currentOffset = 0) {
-    setLoading(true);
     fetch(getCoincapAssetListUrl(currentOffset))
       .then((response) => {
         if (!response.ok) {
@@ -94,6 +93,7 @@ export function Home() {
     const nextOffset = offset + 10;
 
     setOffset(nextOffset);
+    setLoading(true);
     getData(nextOffset);
   }
 
