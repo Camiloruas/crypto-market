@@ -17,6 +17,20 @@ export function Detail() {
   const { cripto } = useParams();
   const navigate = useNavigate();
 
+  function formatCurrency(value: string) {
+    return Number(value).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'USD',
+    });
+  }
+
+  function formatCompact(value: string) {
+    return Number(value).toLocaleString('pt-BR', {
+      notation: 'compact',
+      maximumFractionDigits: 2,
+    });
+  }
+
   useEffect(() => {
     async function getCoin() {
       try {
@@ -30,7 +44,24 @@ export function Detail() {
         const data: DataProps = await response.json();
         if ('error' in data) {
           navigate('/');
+          return;
         }
+
+        const resultData = {
+          ...data.data,
+          formattedPrice: formatCurrency(
+            data.data.priceUsd,
+          ),
+          formattedMarket: formatCompact(
+            data.data.marketCapUsd,
+          ),
+          formattedVolume: formatCompact(
+            data.data.volumeUsd24Hr,
+          ),
+          formattedChange: `${Number(data.data.changePercent24Hr).toFixed(2)}%`,
+        };
+
+        console.log(resultData);
       } catch (err) {
         console.log(err);
         navigate('/');
