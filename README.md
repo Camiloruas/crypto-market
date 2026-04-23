@@ -222,17 +222,6 @@ Runs the automated test suite with Vitest.
 * JSDOM for simulating a browser-like environment.
 * MSW for future API mocking in integration tests without depending on the real CoinCap API.
 
-#### Test Evolution Strategy
-
-Recommended next steps for expanding test coverage:
-
-* Unit tests for formatting functions such as currency, compact numbers and percentage change.
-* Component tests for `Header` and `Detail`.
-* Integration tests for search, navigation to details and returning to the home page.
-* Error tests for unknown assets, API failures and missing route parameters.
-* Accessibility tests for links, buttons, tables and keyboard navigation.
-* End-to-end tests for the main user flow in a real browser environment.
-
 ### API Integration
 
 The project uses the CoinCap API to fetch cryptocurrency market data.
@@ -278,24 +267,6 @@ Implemented:
 * API key environment configuration.
 * Initial automated tests with Vitest and React Testing Library.
 
-In progress:
-
-* Better loading and error states.
-* Expanded automated test coverage.
-* Accessibility improvements.
-* Favorites and local persistence.
-* Historical charts.
-
-### Next Improvements
-
-* Add loading skeletons while data is being fetched.
-* Improve API error handling.
-* Add favorites using `localStorage`.
-* Add historical price charts.
-* Expand tests for the detail page and error flows.
-* Improve table and button accessibility.
-* Add end-to-end tests with Playwright.
-
 ### Demonstrated Learning
 
 This project demonstrates practice with:
@@ -322,7 +293,7 @@ Portfolio: https://www.camiloruas.dev
 
 ### License
 
-This project is open source and available under the MIT License.
+This project was developed for study and portfolio purposes.
 
 ---
 
@@ -548,17 +519,6 @@ Executa a suíte automatizada com Vitest.
 * JSDOM para simular um ambiente parecido com o navegador.
 * MSW para futuros mocks de API em testes de integração sem depender da CoinCap real.
 
-#### Estratégia de Evolução dos Testes
-
-Próximos passos recomendados para ampliar a cobertura:
-
-* Testes isolados para funções de formatação, como moeda, números compactos e percentual de variação.
-* Testes de componentes para `Header` e `Detail`.
-* Testes de integração para busca, navegação para detalhes e retorno para a home.
-* Testes de erro para moedas inexistentes, falhas de API e ausência de parâmetro de rota.
-* Testes de acessibilidade para links, botões, tabela e navegação por teclado.
-* Testes end-to-end para o fluxo principal do usuário em navegador real.
-
 ### Integração com API
 
 O projeto utiliza a CoinCap API para buscar informações de mercado das criptomoedas.
@@ -604,24 +564,6 @@ Implementado:
 * Configuração de API key por variável de ambiente.
 * Testes automatizados iniciais com Vitest e React Testing Library.
 
-Em evolução:
-
-* Melhores estados de carregamento e erro.
-* Ampliação da cobertura de testes automatizados.
-* Melhorias de acessibilidade.
-* Favoritos e persistência local.
-* Gráficos históricos.
-
-### Próximas Melhorias
-
-* Adicionar loading skeleton durante o carregamento dos dados.
-* Melhorar tratamento de erro para falhas de API.
-* Criar sistema de favoritos com `localStorage`.
-* Adicionar gráficos de histórico de preço.
-* Ampliar testes para a página de detalhes e fluxos de erro.
-* Melhorar acessibilidade da tabela e dos botões.
-* Adicionar testes end-to-end com Playwright.
-
 ### Aprendizados Demonstrados
 
 Este projeto demonstra prática com:
@@ -648,4 +590,4 @@ Portfólio: https://www.camiloruas.dev
 
 ### Licença
 
-Este projeto é open source e está disponível sob a licença MIT.
+Este projeto foi desenvolvido para fins de estudo e portfólio.
