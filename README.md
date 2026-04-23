@@ -1,8 +1,8 @@
-# Crypto Market
+# CryptoFlow
 
 ## English
 
-Crypto Market is a cryptocurrency dashboard built with React, TypeScript and Vite. The application consumes the CoinCap API to display real market data, including asset listing, search, incremental pagination, dynamic detail pages and a responsive interface.
+CryptoFlow is a cryptocurrency dashboard built with React, TypeScript and Vite. The application consumes the CoinCap API to display real market data, including asset listing, search, incremental pagination, dynamic detail pages and a responsive interface.
 
 The goal of this project is to demonstrate API consumption, front-end architecture, routing, componentization, static typing, styling with CSS Modules and automated testing practices in a modern React application.
 
@@ -12,7 +12,7 @@ Access the deployed project: https://crypto-market-psi-one.vercel.app/
 
 ### Overview
 
-Crypto Market allows users to track cryptocurrencies through a dynamic table focused on quick market reading. The application displays current price, market cap, 24-hour volume and percentage change, with visual indicators for positive and negative variations.
+CryptoFlow allows users to track cryptocurrencies through a dynamic table focused on quick market reading. The application displays current price, market cap, 24-hour volume and percentage change, with visual indicators for positive and negative variations.
 
 The project was structured with clear responsibilities so it can be maintained and expanded with new features such as favorites, historical charts, advanced error states and improved accessibility.
 
@@ -303,7 +303,7 @@ This project was developed for study and portfolio purposes.
 
 ## Português
 
-Crypto Market é um dashboard de criptomoedas desenvolvido com React, TypeScript e Vite. A aplicação consome a API da CoinCap para exibir dados reais de mercado, com listagem de ativos, busca por moeda, paginação incremental, páginas dinâmicas de detalhes e interface responsiva.
+CryptoFlow é um dashboard de criptomoedas desenvolvido com React, TypeScript e Vite. A aplicação consome a API da CoinCap para exibir dados reais de mercado, com listagem de ativos, busca por moeda, paginação incremental, páginas dinâmicas de detalhes e interface responsiva.
 
 O objetivo deste projeto é demonstrar consumo de APIs, arquitetura front-end, rotas, componentização, tipagem estática, estilização com CSS Modules e práticas de testes automatizados em uma aplicação React moderna.
 
@@ -313,7 +313,7 @@ Acesse o projeto em produção: https://crypto-market-psi-one.vercel.app/
 
 ### Visão Geral
 
-O Crypto Market permite acompanhar criptomoedas em uma tabela dinâmica voltada para leitura rápida do mercado. A aplicação apresenta preço atual, valor de mercado, volume negociado nas últimas 24 horas e variação percentual, com indicadores visuais para resultados positivos e negativos.
+O CryptoFlow permite acompanhar criptomoedas em uma tabela dinâmica voltada para leitura rápida do mercado. A aplicação apresenta preço atual, valor de mercado, volume negociado nas últimas 24 horas e variação percentual, com indicadores visuais para resultados positivos e negativos.
 
 O projeto foi estruturado com responsabilidades bem separadas para facilitar manutenção e evolução com novas funcionalidades, como favoritos, gráficos históricos, estados de erro mais completos e melhorias de acessibilidade.
 
