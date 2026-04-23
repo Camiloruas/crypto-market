@@ -109,6 +109,12 @@ export function Detail() {
           </span>
         </a>
       </section>
+
+      <div className={styles.backButtonArea}>
+        <button className={styles.backButton} onClick={() => navigate("/")}>
+          Voltar
+        </button>
+      </div>
     </div>
   );
 }

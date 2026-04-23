@@ -56,15 +56,17 @@ table td {
 
 .tdLabel {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
   color: #fff;
 }
 .tdProfit {
   color: #12f98a;
+  font-size: 15px;
   font-weight: bold;
 }
 .tdLoss {
   color: #f91257;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -92,8 +94,12 @@ table td {
   flex-direction: row;
   align-items: center;
   gap: 8px;
-  font-size: 17px;
+  font-size: 19px;
   white-space: nowrap;
+}
+
+.name a {
+  color: inherit;
 }
 /* Responsividade Tabela */
 
